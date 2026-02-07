@@ -1,0 +1,28 @@
+# Ignore Virtual Environment (Heavy libraries)
+.venv/
+venv/
+env/
+
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.py[cod]
+*$py.class
+
+# Ignore the Database we are about to create
+vector_db/
+
+# Ignore the raw data (optional, but good practice if files are private)
+data/*.pdf
+
+# Ignore the temporary database
+chroma_temp/
+
+# FlashRank model cache (downloaded at first run)
+opt/
+
+# MacOS junk
+.DS_Store
+
+# Logs
+*.log
