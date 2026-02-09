@@ -21,7 +21,7 @@ def create_vector_db():
         print(f"Created '{DATA_PATH}' folder. Please put your medical PDFs here.")
         return
 
-    pdf_files = [f for f in os.listdir(DATA_PATH) if f.endswith('.pdf')]
+    pdf_files = [f for f in os.listdir(DATA_PATH) if f.lower().endswith(".pdf")]
     if not pdf_files:
         print(f"No PDF files found in '{DATA_PATH}'. Add a file and retry.")
         return

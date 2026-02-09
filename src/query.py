@@ -53,12 +53,6 @@ def main():
 
         # 5. Output
         print(f"\n💡 Answer:\n{response_text.content}\n")
-        
-        # Show sources
-        # print("Sources:")
-        # for doc, score in results:
-        #     print(f" - [Score: {score:.4f}] {doc.page_content[:100]}...")
-        # print("-" * 50)
 
 if __name__ == "__main__":
     main()

@@ -59,7 +59,7 @@ This pipeline is implemented in **`src/app.py`**: ingestion → chunking → hyb
 |--------|---------|-------------|
 | ✅ | **v1.0** | MVP — Basic semantic search with ChromaDB & Llama 3. |
 | ✅ | **v2.0** | Production precision layer — Hybrid search (BM25 + vector) & reranking for clinical guidelines. *(Current.)* |
-| ⬜ | **v3.0** | Scientific benchmarking — RAGAS integration to measure Faithfulness and Context Precision. |
+| ✅ | **v3.0** | Scientific benchmarking — RAGAS integration (Faithfulness, Answer Relevancy, Context Precision); `temperature=0` for reproducible scores. |
 | ⬜ | **v4.0** | Multimodal agent — Vision (Llava/ColPali) for medical imaging alongside text guidelines. |
 
 ---
@@ -101,6 +101,14 @@ Open the URL shown in the terminal (default: `http://localhost:8501`). Upload PD
 python src/ingest.py
 ```
 
+### Optional: RAGAS evaluation (V3)
+
+Benchmark Naïve vs Advanced RAG with Faithfulness, Answer Relevancy, and Context Precision. See **scripts/README.md** for usage and prerequisites.
+
+```bash
+python scripts/evaluate_rag.py --mode both
+```
+
 ---
 
 ## Repository Layout
@@ -111,6 +119,9 @@ local-medical-rag/
 │   ├── app.py      # Streamlit app, two-stage retrieval, reranking, chat
 │   ├── ingest.py   # PDF ingestion and ChromaDB indexing
 │   └── query.py    # CLI query helper
+├── scripts/
+│   ├── evaluate_rag.py   # RAGAS benchmark (Naïve vs Advanced RAG)
+│   └── README.md
 ├── data/           # Put PDFs here (*.pdf gitignored)
 ├── requirements.txt
 ├── LICENSE         # MIT

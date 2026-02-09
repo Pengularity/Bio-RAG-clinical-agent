@@ -11,3 +11,6 @@ flashrank>=0.2.0
 rank_bm25
 pypdf
 sentence-transformers
+
+# V3: RAGAS evaluation (scripts/evaluate_rag.py)
+ragas>=0.2.0

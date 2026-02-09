@@ -4,7 +4,6 @@ import tempfile
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_ollama import ChatOllama
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
@@ -140,15 +139,14 @@ if prompt := st.chat_input("Ask a clinical or technical question..."):
 
             # C. GENERATION
             PROMPT_TEMPLATE = """
-            Use the strictly provided context to answer. If unsure, say you don't know.
-            Focus on clinical thresholds and specific scores (e.g., NYHA, HbA1c).
+            Use ONLY the information explicitly stated in the context below. Do not add, infer, or paraphrase beyond what is written. If the context does not contain the answer, say "I don't know." Prefer quoting or staying very close to the context wording. Focus on clinical thresholds and specific scores (e.g., NYHA, HbA1c) when present.
 
             CONTEXT:
             {context}
 
             QUESTION: {question}
             """
-            model = ChatOllama(model=model_choice)
+            model = ChatOllama(model=model_choice, num_predict=512)
             full_prompt = PROMPT_TEMPLATE.format(context=context, question=prompt)
             
             response = model.invoke(full_prompt)
